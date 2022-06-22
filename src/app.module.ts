@@ -7,6 +7,7 @@ import { MateServiceRequestsModule } from './mate-service-requests/mate-service-
 import { MateServiceAppointmentsModule } from './mate-service-appointments/mate-service-appointments.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/user.entity';
+import { Mate } from './mates/mate.entity';
 
 @Module({
   imports: [
@@ -17,7 +18,7 @@ import { User } from './users/user.entity';
       username: 'postgres',
       password: 'heinthant472003',
       database: 'mateservice',
-      entities: [User],
+      entities: [User, Mate],
       synchronize: true,
       logging: false,
     }),
