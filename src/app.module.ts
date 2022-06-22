@@ -9,6 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/user.entity';
 import { Mate } from './mates/mate.entity';
 import { MatePriceModule } from './mate-price/mate-price.module';
+import { MatePrice } from './mate-price/mate-price.entity';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { MatePriceModule } from './mate-price/mate-price.module';
       username: 'postgres',
       password: 'heinthant472003',
       database: 'mateservice',
-      entities: [User, Mate],
+      entities: [User, Mate, MatePrice],
       synchronize: true,
       logging: false,
     }),

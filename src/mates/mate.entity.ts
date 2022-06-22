@@ -1,6 +1,11 @@
-import { time } from 'console';
-import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
-import { Column, Entity, PrimaryGeneratedColumn, Timestamp } from 'typeorm';
+import { MatePrice } from 'src/mate-price/mate-price.entity';
+import {
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  Timestamp,
+} from 'typeorm';
 
 @Entity()
 export class Mate {
@@ -54,4 +59,7 @@ export class Mate {
 
   @Column('time')
   reponseTime: Date;
+
+  @OneToMany(() => MatePrice, (matePrice) => matePrice.mate)
+  matePrice: MatePrice[];
 }
