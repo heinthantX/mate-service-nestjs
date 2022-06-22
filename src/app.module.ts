@@ -8,6 +8,7 @@ import { MateServiceAppointmentsModule } from './mate-service-appointments/mate-
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/user.entity';
 import { Mate } from './mates/mate.entity';
+import { MatePriceModule } from './mate-price/mate-price.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { Mate } from './mates/mate.entity';
     MatesModule,
     MateServiceRequestsModule,
     MateServiceAppointmentsModule,
+    MatePriceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
