@@ -3,20 +3,21 @@ import {
   Controller,
   Delete,
   Get,
-  NotFoundException,
-  Param,
   Post,
   Session,
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from 'src/guards/auth.guard';
+import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { AuthService } from './auth.service';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { CreateUserDto } from './dtos/create-user.dto';
+import { UserDto } from './dtos/user.dto';
 import { User } from './user.entity';
 import { UsersService } from './users.service';
 
 @Controller('users')
+@Serialize(UserDto)
 export class UsersController {
   constructor(
     private usersService: UsersService,
