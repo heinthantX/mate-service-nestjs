@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Mate } from 'src/mates/mate.entity';
+import { Mate } from '../mates/mate.entity';
 
 @Entity()
 export class MatePrice {

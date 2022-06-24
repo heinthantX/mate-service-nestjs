@@ -1,4 +1,3 @@
-import { MatePrice } from 'src/mate-price/mate-price.entity';
 import {
   AfterInsert,
   AfterRemove,
@@ -8,6 +7,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { MatePrice } from '../mate-price/mate-price.entity';
 
 @Entity()
 export class Mate {

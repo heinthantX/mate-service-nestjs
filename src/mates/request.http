@@ -3,8 +3,8 @@ POST http://localhost:3000/mates/signup HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "first mate",
-  "email": "first@first.com",
+  "name": "mate name",
+  "email": "asdf@asdf.com",
   "password": "mypassword",
   "phone": "+959000000000",
   "photoUrl": "http://photo.com/photo.png",
@@ -24,6 +24,24 @@ POST http://localhost:3000/mates/signin HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "first@first.com",
+  "email": "asdf@asdf.com",
   "password": "mypassword"
+}
+
+### sign out mate
+POST  http://localhost:3000/mates/signout HTTP/1.1
+
+### delete current  signed mate accout
+DELETE  http://localhost:3000/mates/delete HTTP/1.1
+
+#### who am i
+GET   http://localhost:3000/mates/whoami HTTP/1.1
+
+
+### update a mate
+PATCH  http://localhost:3000/mates/update HTTP/1.1
+Content-Type: application/json
+
+{
+  "status": "offline"
 }
