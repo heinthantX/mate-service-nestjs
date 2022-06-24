@@ -12,6 +12,8 @@ import { Mate } from './mates/mate.entity';
 import { MatePriceModule } from './mate-price/mate-price.module';
 import { MatePrice } from './mate-price/mate-price.entity';
 import { APP_PIPE } from '@nestjs/core';
+import { MateServiceRequest } from './mate-service-requests/mate-service-request.entity';
+import { MateServiceAppointment } from './mate-service-appointments/mate-service-appointment.entity';
 const cookieSession = require('cookie-session');
 
 @Module({
@@ -23,7 +25,13 @@ const cookieSession = require('cookie-session');
       username: 'postgres',
       password: 'heinthant472003',
       database: 'mateservice',
-      entities: [User, Mate, MatePrice],
+      entities: [
+        User,
+        Mate,
+        MatePrice,
+        MateServiceRequest,
+        MateServiceAppointment,
+      ],
       synchronize: true,
       logging: false,
     }),
