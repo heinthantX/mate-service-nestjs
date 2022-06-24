@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreateMateDto } from './dtos/create-mate.dto';
 import { Mate } from './mate.entity';
 
 @Injectable()
@@ -15,9 +16,27 @@ export class MatesService {
     return this.repo.find({ email });
   }
 
-  // create(userDto: ) {
-  //   const mate = this.repo.create(userDto);
+  create(mateDTO: CreateMateDto) {
+    const mate = this.repo.create(mateDTO);
 
-  //   return this.repo.save(user);
-  // }
+    return this.repo.save(mate);
+  }
+
+  async update(id: number, attrs: Partial<Mate>) {
+    const mate = await this.repo.findOne(id);
+    if (!mate) {
+      throw new NotFoundException('Mate not found');
+    } else {
+      Object.assign(mate, attrs);
+      return this.repo.save(mate);
+    }
+  }
+
+  async remove(id: number) {
+    const mate = await this.findOne(id);
+    if (!mate) {
+      throw new NotFoundException('Mate not found');
+    }
+    return this.repo.remove(mate);
+  }
 }

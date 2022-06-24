@@ -9,9 +9,9 @@ import {
   Session,
   UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from 'src/guards/auth.guard';
+import { UserAuthGuard } from 'src/guards/user-auth.guard';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
-import { AuthService } from './auth.service';
+import { UsersAuthService } from './users-auth.service';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
@@ -24,44 +24,44 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(
     private usersService: UsersService,
-    private authService: AuthService,
+    private usersAuthService: UsersAuthService,
   ) {}
 
   @Post('signup')
   async signUp(@Body() body: CreateUserDto, @Session() session: any) {
-    const user = await this.authService.signUp(body);
+    const user = await this.usersAuthService.signUp(body);
     session.userId = user.id;
     return user;
   }
 
   @Post('signin')
   async signIn(@Body() body: Partial<CreateUserDto>, @Session() session: any) {
-    const user = await this.authService.signIn(body.email, body.password);
+    const user = await this.usersAuthService.signIn(body.email, body.password);
     session.userId = user.id;
     return user;
   }
 
   @Post('signout')
-  @UseGuards(AuthGuard)
+  @UseGuards(UserAuthGuard)
   signOut(@Session() session: any) {
     return (session.userId = null);
   }
 
   @Delete('delete')
-  @UseGuards(AuthGuard)
+  @UseGuards(UserAuthGuard)
   removeUser(@CurrentUser() user: User, @Session() session: any) {
     session.UserId = null;
     return this.usersService.remove(user.id);
   }
 
   @Get('whoami')
-  @UseGuards(AuthGuard)
+  @UseGuards(UserAuthGuard)
   whoAmI(@CurrentUser() user: User) {
     return user;
   }
 
   @Patch(':id')
-  @UseGuards(AuthGuard)
+  @UseGuards(UserAuthGuard)
   updateUser(@CurrentUser() user: User, @Body() body: UpdateUserDto) {
     return this.usersService.update(user.id, body);
   }

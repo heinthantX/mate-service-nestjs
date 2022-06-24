@@ -54,7 +54,7 @@ export class Mate {
   @Column('time')
   time: Date;
 
-  @Column()
+  @Column({ default: 'online' })
   status: string;
 
   @Column('time')

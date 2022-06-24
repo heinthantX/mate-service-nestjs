@@ -35,6 +35,3 @@ Content-Type: application/json
 {
   "userName": "hello"
 }
-
-### Get Sessioin
-GET http://localhost:3000/users/session HTTP/1.1
