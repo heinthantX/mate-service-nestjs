@@ -1,4 +1,4 @@
-import { ClassConstructor, Expose } from 'class-transformer';
+import { Expose } from 'class-transformer';
 
 export class UserDto {
   @Expose()
