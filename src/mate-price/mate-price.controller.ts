@@ -37,6 +37,7 @@ export class MatePriceController {
   }
 
   @Patch()
+  @UseGuards(MatePrice)
   updateMatePrice(
     @Body() body: UpdateMatePriceDto[],
     @CurrentMate() mate: Mate,
