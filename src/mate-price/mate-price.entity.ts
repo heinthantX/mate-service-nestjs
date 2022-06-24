@@ -6,12 +6,12 @@ export class MatePrice {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Mate, (mate) => mate.matePrice)
-  mate: Mate;
-
   @Column('time')
   duration: Date;
 
   @Column()
   price: number;
+
+  @ManyToOne(() => Mate, (mate) => mate.matePrice, { onDelete: 'CASCADE' })
+  mate: Mate;
 }

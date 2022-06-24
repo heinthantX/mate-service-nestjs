@@ -10,6 +10,7 @@ import { CurrentMateMiddleware } from './middlewares/current-mate.middleware';
   imports: [TypeOrmModule.forFeature([Mate])],
   providers: [MatesService, MatesAuthService],
   controllers: [MatesController],
+  exports: [MatesService],
 })
 export class MatesModule {
   configure(consumer: MiddlewareConsumer) {

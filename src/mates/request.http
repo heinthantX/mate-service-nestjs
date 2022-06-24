@@ -31,7 +31,7 @@ Content-Type: application/json
 ### sign out mate
 POST  http://localhost:3000/mates/signout HTTP/1.1
 
-### delete current  signed mate accout
+### delete current  signed mate account
 DELETE  http://localhost:3000/mates/delete HTTP/1.1
 
 #### who am i
