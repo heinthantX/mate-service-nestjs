@@ -3,7 +3,9 @@ import {
   Controller,
   Delete,
   Get,
+  Patch,
   Post,
+  Param,
   Session,
   UseGuards,
 } from '@nestjs/common';
@@ -12,6 +14,7 @@ import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { AuthService } from './auth.service';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { CreateUserDto } from './dtos/create-user.dto';
+import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserDto } from './dtos/user.dto';
 import { User } from './user.entity';
 import { UsersService } from './users.service';
@@ -38,21 +41,28 @@ export class UsersController {
     return user;
   }
 
-  @UseGuards(AuthGuard)
   @Post('signout')
+  @UseGuards(AuthGuard)
   signOut(@Session() session: any) {
     return (session.userId = null);
   }
 
+  @Delete('delete')
   @UseGuards(AuthGuard)
-  @Delete(':id')
-  removeUser(@CurrentUser() id: number) {
-    return this.usersService.remove(id);
+  removeUser(@CurrentUser() user: User, @Session() session: any) {
+    session.UserId = null;
+    return this.usersService.remove(user.id);
   }
 
   @Get('whoami')
   @UseGuards(AuthGuard)
   whoAmI(@CurrentUser() user: User) {
     return user;
+  }
+
+  @Patch(':id')
+  @UseGuards(AuthGuard)
+  updateUser(@CurrentUser() user: User, @Body() body: UpdateUserDto) {
+    return this.usersService.update(user.id, body);
   }
 }

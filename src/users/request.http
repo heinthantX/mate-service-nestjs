@@ -5,7 +5,7 @@ Content-Type: application/json
 {
   "userName": "user name",
   "email": "asdf@asdf.com",
-  "phone": "+959999999999",
+  "phone": "+9599999999",
   "password": "mypassword"
 }
 
@@ -26,3 +26,15 @@ DELETE http://localhost:3000/users/delete HTTP/1.1
 
 ### who am i
 GET  http://localhost:3000/users/whoami HTTP/1.1
+
+
+### Update current signed user
+PATCH  http://localhost:3000/users/update HTTP/1.1
+Content-Type: application/json
+
+{
+  "userName": "hello"
+}
+
+### Get Sessioin
+GET http://localhost:3000/users/session HTTP/1.1
