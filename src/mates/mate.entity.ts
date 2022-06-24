@@ -1,3 +1,5 @@
+import { MateServiceAppointment } from 'src/mate-service-appointments/mate-service-appointment.entity';
+import { MateServiceRequest } from 'src/mate-service-requests/mate-service-request.entity';
 import {
   AfterInsert,
   AfterRemove,
@@ -66,7 +68,19 @@ export class Mate {
   responseTime: Date;
 
   @OneToMany(() => MatePrice, (matePrice) => matePrice.mate)
-  matePrice: MatePrice[];
+  matePrices: MatePrice[];
+
+  @OneToMany(
+    () => MateServiceRequest,
+    (mateServiceRequest) => mateServiceRequest.mate,
+  )
+  mateServiceRequests: MateServiceRequest[];
+
+  @OneToMany(
+    () => MateServiceAppointment,
+    (mateServiceAppointment) => mateServiceAppointment.mate,
+  )
+  mateServiceAppointments: MateServiceAppointment[];
 
   @AfterInsert()
   logInsert() {

@@ -12,6 +12,6 @@ export class MatePrice {
   @Column()
   price: number;
 
-  @ManyToOne(() => Mate, (mate) => mate.matePrice, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Mate, (mate) => mate.matePrices, { onDelete: 'CASCADE' })
   mate: Mate;
 }

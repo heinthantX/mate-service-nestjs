@@ -1,3 +1,5 @@
+import { userInfo } from 'os';
+import { MateServiceRequest } from 'src/mate-service-requests/mate-service-request.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -5,6 +7,7 @@ import {
   AfterInsert,
   AfterUpdate,
   AfterRemove,
+  OneToMany,
 } from 'typeorm';
 
 @Entity()
@@ -26,6 +29,12 @@ export class User {
 
   @Column({ default: 'free' })
   userType: string;
+
+  @OneToMany(
+    () => MateServiceRequest,
+    (mateServiceRequest) => mateServiceRequest.user,
+  )
+  mateServiceRequests: MateServiceRequest[];
 
   @AfterInsert()
   logInsert() {

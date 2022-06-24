@@ -1,7 +1,11 @@
+import { Mate } from 'src/mates/mate.entity';
+import { User } from 'src/users/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -41,4 +45,10 @@ export class MateServiceRequest {
 
   @Column({ default: 'pending' })
   status: string;
+
+  @ManyToOne(() => Mate, (mate) => mate.mateServiceRequests)
+  mate: Mate;
+
+  @ManyToOne(() => User, (user) => user.mateServiceRequests)
+  user: User;
 }
