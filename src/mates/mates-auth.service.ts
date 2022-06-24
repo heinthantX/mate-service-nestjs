@@ -4,44 +4,44 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { randomBytes, scrypt as _scrypt } from 'crypto';
-import { CreateUserDto } from './dtos/create-user.dto';
-import { UsersService } from './users.service';
+import { CreateMateDto } from './dtos/create-mate.dto';
+import { MatesService } from './mates.service';
 import { promisify } from 'util';
 const scrypt = promisify(_scrypt);
 
 @Injectable()
-export class UsersAuthService {
-  constructor(private usersService: UsersService) {}
+export class MatesAuthService {
+  constructor(private matesService: MatesService) {}
 
-  async signUp(userDto: CreateUserDto) {
-    const users = await this.usersService.find(userDto.email);
-    if (users.length) {
+  async signUp(mateDto: CreateMateDto) {
+    const mates = await this.matesService.find(mateDto.email);
+    if (mates.length) {
       throw new BadRequestException('email in use');
     }
 
     const salt = randomBytes(8).toString('hex');
 
-    const hash = (await scrypt(userDto.password, salt, 32)) as Buffer;
+    const hash = (await scrypt(mateDto.password, salt, 32)) as Buffer;
 
     const resultPassword = salt + '.' + hash.toString('hex');
 
     const result = { password: resultPassword };
 
-    Object.assign(userDto, result);
+    Object.assign(mateDto, result);
 
-    const user = await this.usersService.create(userDto);
+    const mate = await this.matesService.create(mateDto);
 
-    return user;
+    return mate;
   }
 
   async signIn(email: string, password: string) {
-    const [user] = await this.usersService.find(email);
+    const [mate] = await this.matesService.find(email);
 
-    if (!user) {
+    if (!mate) {
       throw new NotFoundException('invaild email');
     }
 
-    const [salt, storedHash] = user.password.split('.');
+    const [salt, storedHash] = mate.password.split('.');
 
     const hash = (await scrypt(password, salt, 32)) as Buffer;
 
@@ -49,6 +49,6 @@ export class UsersAuthService {
       throw new BadRequestException('incorrect password');
     }
 
-    return user;
+    return mate;
   }
 }

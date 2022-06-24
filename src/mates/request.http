@@ -1,0 +1,29 @@
+### create new mate
+POST http://localhost:3000/mates/signup HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "first mate",
+  "email": "first@first.com",
+  "password": "mypassword",
+  "phone": "+959000000000",
+  "photoUrl": "http://photo.com/photo.png",
+  "city": "yangon",
+  "gender": "male",
+  "age": 26,
+  "height": 170,
+  "bodyType": "slim",
+  "language": "Myanmar",
+  "service": "cooking, washing",
+  "time": "03:00",
+  "responseTime": "01:00"
+}
+
+### sign in as existing mate
+POST http://localhost:3000/mates/signin HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "first@first.com",
+  "password": "mypassword"
+}

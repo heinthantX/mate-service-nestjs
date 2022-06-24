@@ -6,6 +6,8 @@ import {
   IsPhoneNumber,
   IsString,
   IsUrl,
+  Max,
+  Min,
 } from 'class-validator';
 
 export class CreateMateDto {
@@ -15,25 +17,29 @@ export class CreateMateDto {
   @IsEmail()
   email: string;
 
+  @IsString()
+  password: string;
+
   @IsPhoneNumber()
   phone: string;
 
   @IsUrl()
-  PhotoUrl: string;
+  photoUrl: string;
 
   @IsString()
   city: string;
-
-  @IsNumber()
-  rating: number;
 
   @IsString()
   gender: string;
 
   @IsNumber()
+  @Min(0)
+  @Max(100)
   age: number;
 
   @IsNumber()
+  @Min(0)
+  @Max(250)
   height: number;
 
   @IsString()

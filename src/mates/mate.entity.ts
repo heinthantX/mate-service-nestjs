@@ -1,10 +1,12 @@
 import { MatePrice } from 'src/mate-price/mate-price.entity';
 import {
+  AfterInsert,
+  AfterRemove,
+  AfterUpdate,
   Column,
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
-  Timestamp,
 } from 'typeorm';
 
 @Entity()
@@ -15,8 +17,11 @@ export class Mate {
   @Column()
   name: string;
 
-  @Column({ unique: true })
+  @Column()
   email: string;
+
+  @Column()
+  password: string;
 
   @Column()
   phone: string;
@@ -27,7 +32,7 @@ export class Mate {
   @Column()
   city: string;
 
-  @Column()
+  @Column({ default: 5.0 })
   rating: number;
 
   @Column()
@@ -58,8 +63,23 @@ export class Mate {
   status: string;
 
   @Column('time')
-  reponseTime: Date;
+  responseTime: Date;
 
   @OneToMany(() => MatePrice, (matePrice) => matePrice.mate)
   matePrice: MatePrice[];
+
+  @AfterInsert()
+  logInsert() {
+    console.log('Inserted mate with email', this.email);
+  }
+
+  @AfterUpdate()
+  logUpdate() {
+    console.log('Updated mate with email', this.email);
+  }
+
+  @AfterRemove()
+  logRemove() {
+    console.log('Removed mate with email', this.email);
+  }
 }

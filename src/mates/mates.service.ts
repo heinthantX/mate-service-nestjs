@@ -16,8 +16,8 @@ export class MatesService {
     return this.repo.find({ email });
   }
 
-  create(mateDTO: CreateMateDto) {
-    const mate = this.repo.create(mateDTO);
+  create(mateDto: CreateMateDto) {
+    const mate = this.repo.create(mateDto);
 
     return this.repo.save(mate);
   }
