@@ -7,17 +7,17 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { MateAuthGuard } from 'src/guards/mate-auth.guard';
-import { UserAuthGuard } from 'src/guards/user-auth.guard';
-import { CurrentMate } from 'src/mates/decorators/current-mate.decorator';
-import { Mate } from 'src/mates/mate.entity';
-import { CurrentUser } from 'src/users/decorators/current-user.decorator';
-import { User } from 'src/users/user.entity';
+import { MateAuthGuard } from '../guards/mate-auth.guard';
+import { UserAuthGuard } from '../guards/user-auth.guard';
+import { CurrentMate } from '../mates/decorators/current-mate.decorator';
+import { Mate } from '../mates/mate.entity';
+import { CurrentUser } from '../users/decorators/current-user.decorator';
+import { User } from '../users/user.entity';
 import { AcceptRequestDto } from './dtos/accept-request.dto';
 import { CreateRequestDto } from './dtos/create-request.dto';
 import { MateRequestsService } from './mate-requests.service';
 
-@Controller('mates/request')
+@Controller('mates/requests')
 export class MateRequestsController {
   constructor(private mateRequestService: MateRequestsService) {}
 

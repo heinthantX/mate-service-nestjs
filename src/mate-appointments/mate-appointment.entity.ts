@@ -1,5 +1,6 @@
-import { MateRequest } from 'src/mate-requests/mate-request.entity';
-import { Mate } from 'src/mates/mate.entity';
+import { MateRequest } from '../mate-requests/mate-request.entity';
+import { Mate } from '../mates/mate.entity';
+
 import {
   Column,
   Entity,

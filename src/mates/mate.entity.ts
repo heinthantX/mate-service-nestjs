@@ -8,8 +8,8 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { MatePrice } from '../mate-price/mate-price.entity';
-import { MateRequest } from 'src/mate-requests/mate-request.entity';
-import { MateAppointment } from 'src/mate-appointments/mate-appointment.entity';
+import { MateRequest } from '../mate-requests/mate-request.entity';
+import { MateAppointment } from '../mate-appointments/mate-appointment.entity';
 
 @Entity()
 export class Mate {

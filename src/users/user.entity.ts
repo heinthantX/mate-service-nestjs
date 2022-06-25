@@ -1,4 +1,4 @@
-import { MateRequest } from 'src/mate-requests/mate-request.entity';
+import { MateRequest } from '../mate-requests/mate-request.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,

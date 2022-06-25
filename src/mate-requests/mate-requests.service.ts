@@ -1,9 +1,9 @@
 import { Get, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { MateAppointmentsService } from 'src/mate-appointments/mate-appointments.service';
-import { Mate } from 'src/mates/mate.entity';
-import { MatesService } from 'src/mates/mates.service';
-import { User } from 'src/users/user.entity';
+import { MateAppointmentsService } from '../mate-appointments/mate-appointments.service';
+import { Mate } from '../mates/mate.entity';
+import { MatesService } from '../mates/mates.service';
+import { User } from '../users/user.entity';
 import { Repository } from 'typeorm';
 import { CreateRequestDto } from './dtos/create-request.dto';
 import { MateRequest } from './mate-request.entity';
