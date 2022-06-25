@@ -8,6 +8,7 @@ import {
   Param,
   Session,
   UseGuards,
+  NotFoundException,
 } from '@nestjs/common';
 import { UserAuthGuard } from '../guards/user-auth.guard';
 import { Serialize } from '../interceptors/serialize.interceptor';
@@ -55,8 +56,10 @@ export class UsersController {
   }
 
   @Get('whoami')
-  @UseGuards(UserAuthGuard)
   whoAmI(@CurrentUser() user: User) {
+    if (!user) {
+      throw new NotFoundException("you aren't signed in");
+    }
     return user;
   }
 

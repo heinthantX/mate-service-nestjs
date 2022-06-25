@@ -54,8 +54,10 @@ export class MatesController {
   }
 
   @Get('whoami')
-  @UseGuards(MateAuthGuard)
   whoAmI(@CurrentMate() mate: Mate) {
+    if (!mate) {
+      throw new NotFoundException("you aren't signed in");
+    }
     return mate;
   }
 

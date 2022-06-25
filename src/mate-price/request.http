@@ -18,7 +18,7 @@ Content-Type: application/json
 ]
 
 ### get price with mate id
-GET http://localhost:3000/mates/mateprice/1 HTTP/1.1
+GET http://localhost:3000/mates/mateprice/2 HTTP/1.1
 
 ### update price for current mate
 PATCH http://localhost:3000/mates/mateprice HTTP/1.1
@@ -28,10 +28,6 @@ Content-Type: application/json
   {
     "duration": "02:00",
     "price": 9000
-  },
-  {
-    "duration": "03:00",
-    "price": 12000
   },
   {
     "duration": "24:00",
