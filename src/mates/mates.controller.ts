@@ -16,14 +16,14 @@ import { MateAuthGuard } from '../guards/mate-auth.guard';
 import { CurrentMate } from './decorators/current-mate.decorator';
 import { Mate } from './mate.entity';
 import { UpdateMateDto } from './dtos/update-mate.dto';
-import { Serialize } from 'src/interceptors/serialize.interceptor';
+import { Serialize } from '../interceptors/serialize.interceptor';
 import { MateDto } from './dtos/mate.dto';
 
 @Controller('mates')
 @Serialize(MateDto)
 export class MatesController {
   constructor(
-    private mateService: MatesService,
+    private matesService: MatesService,
     private matesAuthService: MatesAuthService,
   ) {}
 
@@ -50,7 +50,7 @@ export class MatesController {
   @UseGuards(MateAuthGuard)
   removeUser(@CurrentMate() mate: Mate, @Session() session: any) {
     session.UserId = null;
-    return this.mateService.remove(mate.id);
+    return this.matesService.remove(mate.id);
   }
 
   @Get('whoami')
@@ -62,6 +62,6 @@ export class MatesController {
   @Patch('update')
   @UseGuards(MateAuthGuard)
   updateMate(@CurrentMate() mate: Mate, @Body() body: UpdateMateDto) {
-    return this.mateService.update(mate.id, body);
+    return this.matesService.update(mate.id, body);
   }
 }

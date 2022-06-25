@@ -1,4 +1,4 @@
-import { MateServiceRequest } from 'src/mate-service-requests/mate-service-request.entity';
+import { MateRequest } from 'src/mate-requests/mate-request.entity';
 import { Mate } from 'src/mates/mate.entity';
 import {
   Column,
@@ -10,17 +10,17 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class MateServiceAppointment {
+export class MateAppointment {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ default: 'appiontment' })
   status: string;
 
-  @OneToOne(() => MateServiceRequest)
+  @OneToOne(() => MateRequest)
   @JoinColumn()
-  mateServiceRequest: MateServiceRequest;
+  mateRequest: MateRequest;
 
-  @ManyToOne(() => Mate, (mate) => mate.mateServiceAppointments)
+  @ManyToOne(() => Mate, (mate) => mate.mateAppointments)
   mate: Mate;
 }

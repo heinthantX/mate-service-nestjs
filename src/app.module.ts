@@ -3,8 +3,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { MatesModule } from './mates/mates.module';
-import { MateServiceRequestsModule } from './mate-service-requests/mate-service-requests.module';
-import { MateServiceAppointmentsModule } from './mate-service-appointments/mate-service-appointments.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { User } from './users/user.entity';
@@ -12,8 +10,10 @@ import { Mate } from './mates/mate.entity';
 import { MatePriceModule } from './mate-price/mate-price.module';
 import { MatePrice } from './mate-price/mate-price.entity';
 import { APP_PIPE } from '@nestjs/core';
-import { MateServiceRequest } from './mate-service-requests/mate-service-request.entity';
-import { MateServiceAppointment } from './mate-service-appointments/mate-service-appointment.entity';
+import { MateRequestsModule } from './mate-requests/mate-requests.module';
+import { MateAppointmentsModule } from './mate-appointments/mate-appointments.module';
+import { MateRequest } from './mate-requests/mate-request.entity';
+import { MateAppointment } from './mate-appointments/mate-appointment.entity';
 const cookieSession = require('cookie-session');
 
 @Module({
@@ -25,21 +25,16 @@ const cookieSession = require('cookie-session');
       username: 'postgres',
       password: 'heinthant472003',
       database: 'mateservice',
-      entities: [
-        User,
-        Mate,
-        MatePrice,
-        MateServiceRequest,
-        MateServiceAppointment,
-      ],
+      entities: [User, Mate, MatePrice, MateRequest, MateAppointment],
       synchronize: true,
       logging: false,
     }),
     UsersModule,
     MatesModule,
-    MateServiceRequestsModule,
-    MateServiceAppointmentsModule,
     MatePriceModule,
+    MateRequestsModule,
+    MateRequestsModule,
+    MateAppointmentsModule,
   ],
   controllers: [AppController],
   providers: [

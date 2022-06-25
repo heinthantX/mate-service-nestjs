@@ -1,5 +1,5 @@
-import { Mate } from 'src/mates/mate.entity';
-import { User } from 'src/users/user.entity';
+import { Mate } from '../mates/mate.entity';
+import { User } from '../users/user.entity';
 import {
   Column,
   CreateDateColumn,
@@ -11,14 +11,14 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class MateServiceRequest {
+export class MateRequest {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   location: string;
 
-  @Column('time')
+  @Column('timestamp with time zone')
   time: Date;
 
   @Column('time')
@@ -46,9 +46,9 @@ export class MateServiceRequest {
   @Column({ default: 'pending' })
   status: string;
 
-  @ManyToOne(() => Mate, (mate) => mate.mateServiceRequests)
+  @ManyToOne(() => Mate, (mate) => mate.mateRequests)
   mate: Mate;
 
-  @ManyToOne(() => User, (user) => user.mateServiceRequests)
+  @ManyToOne(() => User, (user) => user.mateRequests)
   user: User;
 }

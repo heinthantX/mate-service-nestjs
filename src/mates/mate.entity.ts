@@ -1,5 +1,3 @@
-import { MateServiceAppointment } from 'src/mate-service-appointments/mate-service-appointment.entity';
-import { MateServiceRequest } from 'src/mate-service-requests/mate-service-request.entity';
 import {
   AfterInsert,
   AfterRemove,
@@ -10,6 +8,8 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { MatePrice } from '../mate-price/mate-price.entity';
+import { MateRequest } from 'src/mate-requests/mate-request.entity';
+import { MateAppointment } from 'src/mate-appointments/mate-appointment.entity';
 
 @Entity()
 export class Mate {
@@ -70,17 +70,11 @@ export class Mate {
   @OneToMany(() => MatePrice, (matePrice) => matePrice.mate)
   matePrices: MatePrice[];
 
-  @OneToMany(
-    () => MateServiceRequest,
-    (mateServiceRequest) => mateServiceRequest.mate,
-  )
-  mateServiceRequests: MateServiceRequest[];
+  @OneToMany(() => MateRequest, (mateRequest) => mateRequest.mate)
+  mateRequests: MateRequest[];
 
-  @OneToMany(
-    () => MateServiceAppointment,
-    (mateServiceAppointment) => mateServiceAppointment.mate,
-  )
-  mateServiceAppointments: MateServiceAppointment[];
+  @OneToMany(() => MateAppointment, (mateAppointment) => mateAppointment.mate)
+  mateAppointments: MateAppointment[];
 
   @AfterInsert()
   logInsert() {

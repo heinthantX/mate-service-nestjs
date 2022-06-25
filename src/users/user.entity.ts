@@ -1,5 +1,4 @@
-import { userInfo } from 'os';
-import { MateServiceRequest } from 'src/mate-service-requests/mate-service-request.entity';
+import { MateRequest } from 'src/mate-requests/mate-request.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -30,11 +29,8 @@ export class User {
   @Column({ default: 'free' })
   userType: string;
 
-  @OneToMany(
-    () => MateServiceRequest,
-    (mateServiceRequest) => mateServiceRequest.user,
-  )
-  mateServiceRequests: MateServiceRequest[];
+  @OneToMany(() => MateRequest, (mateRequest) => mateRequest.user)
+  mateRequests: MateRequest[];
 
   @AfterInsert()
   logInsert() {

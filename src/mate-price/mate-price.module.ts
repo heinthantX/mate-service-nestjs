@@ -3,7 +3,7 @@ import { MatePriceService } from './mate-price.service';
 import { MatePriceController } from './mate-price.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MatePrice } from './mate-price.entity';
-import { MatesModule } from 'src/mates/mates.module';
+import { MatesModule } from '../mates/mates.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([MatePrice]), MatesModule],

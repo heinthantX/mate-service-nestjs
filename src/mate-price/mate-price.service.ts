@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Mate } from 'src/mates/mate.entity';
-import { MatesService } from 'src/mates/mates.service';
+import { Mate } from '../mates/mate.entity';
+import { MatesService } from '../mates/mates.service';
 import { Repository } from 'typeorm';
 import { CreateMatePriceDto } from './dtos/create-mate-price.dto';
 import { MatePrice } from './mate-price.entity';

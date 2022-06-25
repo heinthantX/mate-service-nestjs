@@ -8,9 +8,9 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { CurrentMate } from 'src/mates/decorators/current-mate.decorator';
-import { Mate } from 'src/mates/mate.entity';
-import { MatesService } from 'src/mates/mates.service';
+import { CurrentMate } from '../mates/decorators/current-mate.decorator';
+import { Mate } from '../mates/mate.entity';
+import { MatesService } from '../mates/mates.service';
 import { CreateMatePriceDto } from './dtos/create-mate-price.dto';
 import { UpdateMatePriceDto } from './dtos/update-mate-price.dto';
 import { MatePrice } from './mate-price.entity';
