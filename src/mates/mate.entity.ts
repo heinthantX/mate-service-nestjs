@@ -61,8 +61,8 @@ export class Mate {
   @Column('time')
   time: Date;
 
-  @Column({ default: 'online' })
-  status: string;
+  @Column({ default: true })
+  online: boolean;
 
   @Column('time')
   responseTime: Date;

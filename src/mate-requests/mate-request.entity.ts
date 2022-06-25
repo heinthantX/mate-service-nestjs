@@ -43,8 +43,8 @@ export class MateRequest {
   })
   updatedAt: Date;
 
-  @Column({ default: 'pending' })
-  status: string;
+  @Column({ default: false })
+  accepted: boolean;
 
   @ManyToOne(() => Mate, (mate) => mate.mateRequests)
   mate: Mate;

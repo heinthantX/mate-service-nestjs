@@ -14,8 +14,8 @@ export class MateAppointment {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ default: 'appiontment' })
-  status: string;
+  @Column({ default: false })
+  completed: boolean;
 
   @OneToOne(() => MateRequest)
   @JoinColumn()

@@ -70,8 +70,4 @@ export class UpdateMateDto {
   @IsMilitaryTime()
   @IsOptional()
   responseTime: Date;
-
-  @IsString()
-  @IsOptional()
-  status: string;
 }

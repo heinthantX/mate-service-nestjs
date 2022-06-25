@@ -43,5 +43,13 @@ PATCH  http://localhost:3000/mates/update HTTP/1.1
 Content-Type: application/json
 
 {
-  "status": "offline"
+  "name": "new name"
+}
+
+### change current signed mate active status
+PATCH  http://localhost:3000/mates/active-status HTTP/1.1
+Content-Type: application/json
+
+{
+  "online": true
 }

@@ -17,6 +17,6 @@ export class MateAppointmentsService {
     appointment.mate = mate;
     appointment.mateRequest = mateRequest;
 
-    return this.repo.save(mate);
+    return this.repo.save(appointment);
   }
 }

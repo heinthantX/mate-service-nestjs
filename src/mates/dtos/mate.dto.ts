@@ -47,7 +47,7 @@ export class MateDto {
   time: Date;
 
   @Expose()
-  status: string;
+  online: boolean;
 
   @Expose()
   responseTime: Date;

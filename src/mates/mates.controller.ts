@@ -18,6 +18,7 @@ import { Mate } from './mate.entity';
 import { UpdateMateDto } from './dtos/update-mate.dto';
 import { Serialize } from '../interceptors/serialize.interceptor';
 import { MateDto } from './dtos/mate.dto';
+import { ChangeMateActiveStatusDto } from './dtos/change-mate-active-status.dto';
 
 @Controller('mates')
 @Serialize(MateDto)
@@ -64,6 +65,15 @@ export class MatesController {
   @Patch('update')
   @UseGuards(MateAuthGuard)
   updateMate(@CurrentMate() mate: Mate, @Body() body: UpdateMateDto) {
+    return this.matesService.update(mate.id, body);
+  }
+
+  @Patch('active-status')
+  @UseGuards(MateAuthGuard)
+  changeOfflineMate(
+    @CurrentMate() mate: Mate,
+    @Body() body: ChangeMateActiveStatusDto,
+  ) {
     return this.matesService.update(mate.id, body);
   }
 }
