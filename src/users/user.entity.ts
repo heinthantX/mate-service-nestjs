@@ -8,7 +8,7 @@ import {
   AfterRemove,
   OneToMany,
 } from 'typeorm';
-import { Message } from 'src/messages/message.entiy';
+import { Message } from '../messages/message.entiy';
 
 @Entity()
 export class User {

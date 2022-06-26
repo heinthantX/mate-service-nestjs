@@ -1,5 +1,5 @@
-import { Mate } from 'src/mates/mate.entity';
-import { User } from 'src/users/user.entity';
+import { Mate } from '../mates/mate.entity';
+import { User } from '../users/user.entity';
 import {
   Column,
   CreateDateColumn,

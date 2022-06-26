@@ -10,7 +10,7 @@ import {
 import { MatePrice } from '../mate-price/mate-price.entity';
 import { MateRequest } from '../mate-requests/mate-request.entity';
 import { MateAppointment } from '../mate-appointments/mate-appointment.entity';
-import { Message } from 'src/messages/message.entiy';
+import { Message } from '../messages/message.entiy';
 
 @Entity()
 export class Mate {
