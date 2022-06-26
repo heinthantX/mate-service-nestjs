@@ -14,6 +14,9 @@ export class Message {
   id: number;
 
   @Column()
+  content: string;
+
+  @Column()
   whoSend: string;
 
   @CreateDateColumn({
