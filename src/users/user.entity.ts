@@ -8,6 +8,7 @@ import {
   AfterRemove,
   OneToMany,
 } from 'typeorm';
+import { Message } from 'src/messages/message.entiy';
 
 @Entity()
 export class User {
@@ -31,6 +32,9 @@ export class User {
 
   @OneToMany(() => MateRequest, (mateRequest) => mateRequest.user)
   mateRequests: MateRequest[];
+
+  @OneToMany(() => Message, (message) => message.user)
+  messages: Message[];
 
   @AfterInsert()
   logInsert() {

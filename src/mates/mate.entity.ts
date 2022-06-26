@@ -10,6 +10,7 @@ import {
 import { MatePrice } from '../mate-price/mate-price.entity';
 import { MateRequest } from '../mate-requests/mate-request.entity';
 import { MateAppointment } from '../mate-appointments/mate-appointment.entity';
+import { Message } from 'src/messages/message.entiy';
 
 @Entity()
 export class Mate {
@@ -75,6 +76,9 @@ export class Mate {
 
   @OneToMany(() => MateAppointment, (mateAppointment) => mateAppointment.mate)
   mateAppointments: MateAppointment[];
+
+  @OneToMany(() => Message, (message) => message.mate)
+  messages: Message[];
 
   @AfterInsert()
   logInsert() {

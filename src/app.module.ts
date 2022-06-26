@@ -14,6 +14,8 @@ import { MateRequestsModule } from './mate-requests/mate-requests.module';
 import { MateAppointmentsModule } from './mate-appointments/mate-appointments.module';
 import { MateRequest } from './mate-requests/mate-request.entity';
 import { MateAppointment } from './mate-appointments/mate-appointment.entity';
+import { MessagesModule } from './messages/messages.module';
+import { Message } from './messages/message.entiy';
 const cookieSession = require('cookie-session');
 
 @Module({
@@ -25,7 +27,7 @@ const cookieSession = require('cookie-session');
       username: 'postgres',
       password: 'heinthant472003',
       database: 'mateservice',
-      entities: [User, Mate, MatePrice, MateRequest, MateAppointment],
+      entities: [User, Mate, MatePrice, MateRequest, MateAppointment, Message],
       synchronize: true,
       logging: false,
     }),
@@ -35,6 +37,7 @@ const cookieSession = require('cookie-session');
     MateRequestsModule,
     MateRequestsModule,
     MateAppointmentsModule,
+    MessagesModule,
   ],
   controllers: [AppController],
   providers: [
