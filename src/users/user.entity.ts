@@ -9,6 +9,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { Message } from '../messages/message.entiy';
+import { MateAppointment } from 'src/mate-appointments/mate-appointment.entity';
 
 @Entity()
 export class User {
@@ -32,6 +33,9 @@ export class User {
 
   @OneToMany(() => MateRequest, (mateRequest) => mateRequest.user)
   mateRequests: MateRequest[];
+
+  @OneToMany(() => MateAppointment, (mateAppointment) => mateAppointment.user)
+  mateAppointments: MateAppointment[];
 
   @OneToMany(() => Message, (message) => message.user)
   messages: Message[];

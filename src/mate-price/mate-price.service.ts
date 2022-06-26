@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Mate } from '../mates/mate.entity';
 import { MatesService } from '../mates/mates.service';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { CreateMatePriceDto } from './dtos/create-mate-price.dto';
 import { MatePrice } from './mate-price.entity';
 
@@ -13,7 +13,7 @@ export class MatePriceService {
   ) {}
 
   find(mate: Mate) {
-    return this.repo.find({ relations: { mate: true } });
+    return this.repo.find({ where: { mate: Like(`${mate.id}`) } });
   }
 
   create(matePricesDto: CreateMatePriceDto[], mate: Mate) {
@@ -26,7 +26,9 @@ export class MatePriceService {
   }
 
   async update(mate: Mate, attrs: Partial<MatePrice>[]) {
-    const matePrices = await this.repo.find({ relations: { mate: true } });
+    const matePrices = await this.repo.find({
+      where: { mate: { id: mate.id } },
+    });
     if (!matePrices.length) {
       return;
     }

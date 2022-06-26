@@ -2,7 +2,7 @@
 GET http://localhost:3000/mates/appointments HTTP/1.1
 
 ### change completion with appintments id
-PATCH  http://localhost:3000/mates/appointments/1 HTTP/1.1
+PATCH  http://localhost:3000/mates/appointments/3 HTTP/1.1
 Content-Type: application/json
 
 {

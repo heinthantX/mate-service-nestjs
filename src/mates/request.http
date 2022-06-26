@@ -3,8 +3,8 @@ POST http://localhost:3000/mates/signup HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "mate name",
-  "email": "asdf@asdf.com",
+  "name": "name",
+  "email": "newer@new.com",
   "password": "mypassword",
   "phone": "+959000000000",
   "photoUrl": "http://photo.com/photo.png",

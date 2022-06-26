@@ -8,6 +8,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { MateAuthGuard } from 'src/guards/mate-auth.guard';
 import { CurrentMate } from '../mates/decorators/current-mate.decorator';
 import { Mate } from '../mates/mate.entity';
 import { MatesService } from '../mates/mates.service';
@@ -37,7 +38,7 @@ export class MatePriceController {
   }
 
   @Patch()
-  @UseGuards(MatePrice)
+  @UseGuards(MateAuthGuard)
   updateMatePrice(
     @Body() body: UpdateMatePriceDto[],
     @CurrentMate() mate: Mate,
@@ -45,7 +46,7 @@ export class MatePriceController {
     return this.matePriceService.update(mate, body);
   }
 
-  @Get('/:id')
+  @Get(':id')
   async findAllPrice(@Param('id') id: number) {
     const mate = await this.matesService.findOne(id);
     return this.matePriceService.find(mate);

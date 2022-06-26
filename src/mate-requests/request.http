@@ -11,12 +11,12 @@ Content-Type: application/json
 }
 
 ### accept request with id
-PATCH  http://localhost:3000/mates/requests/accept/2 HTTP/1.1
+PATCH  http://localhost:3000/mates/requests/accept/6 HTTP/1.1
 Content-Type: application/json
 
 {
   "accepted": true
 }
 
-### Get all reuquset for current mate
+### Get all requset for current mate
 GET http://localhost:3000/mates/requests HTTP/1.1

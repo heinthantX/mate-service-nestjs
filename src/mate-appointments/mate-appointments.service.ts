@@ -1,9 +1,14 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MateRequest } from '../mate-requests/mate-request.entity';
 import { Mate } from '../mates/mate.entity';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { MateAppointment } from './mate-appointment.entity';
+import { User } from 'src/users/user.entity';
 
 @Injectable()
 export class MateAppointmentsService {
@@ -12,9 +17,9 @@ export class MateAppointmentsService {
     private repo: Repository<MateAppointment>,
   ) {}
 
-  async addAppointment(mate: Mate, mateRequest: MateRequest) {
+  async addAppointment(mate: Mate, user: User, mateRequest: MateRequest) {
     const appointments = await this.repo.find({
-      relations: { mateRequest: true },
+      where: { mateRequest: { id: mateRequest.id } },
     });
     if (appointments.length) {
       throw new BadRequestException('you already accepted this request');
@@ -22,6 +27,7 @@ export class MateAppointmentsService {
     const appointment = this.repo.create();
     appointment.mate = mate;
     appointment.mateRequest = mateRequest;
+    appointment.user = user;
 
     return this.repo.save(appointment);
   }
@@ -35,8 +41,14 @@ export class MateAppointmentsService {
       .getMany();
   }
 
-  async changeCompletion(id: number, completed: boolean) {
-    const appointment = await this.repo.findOneBy({ id });
+  async changeCompletion(id: number, user: User, completed: boolean) {
+    const appointment = await this.repo.findOneBy({
+      user: { id: user.id },
+      id,
+    });
+    if (!appointment) {
+      throw new NotFoundException('appointment not found');
+    }
     appointment.completed = completed;
 
     return this.repo.save(appointment);
