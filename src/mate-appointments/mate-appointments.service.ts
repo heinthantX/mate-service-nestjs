@@ -13,7 +13,9 @@ export class MateAppointmentsService {
   ) {}
 
   async addAppointment(mate: Mate, mateRequest: MateRequest) {
-    const appointments = await this.repo.find({ mateRequest });
+    const appointments = await this.repo.find({
+      relations: { mateRequest: true },
+    });
     if (appointments.length) {
       throw new BadRequestException('you already accepted this request');
     }
@@ -34,7 +36,7 @@ export class MateAppointmentsService {
   }
 
   async changeCompletion(id: number, completed: boolean) {
-    const appointment = await this.repo.findOne(id);
+    const appointment = await this.repo.findOneBy({ id });
     appointment.completed = completed;
 
     return this.repo.save(appointment);

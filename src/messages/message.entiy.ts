@@ -1,6 +1,7 @@
 import { Mate } from '../mates/mate.entity';
 import { User } from '../users/user.entity';
 import {
+  AfterUpdate,
   Column,
   CreateDateColumn,
   Entity,
@@ -24,9 +25,6 @@ export class Message {
     default: () => 'CURRENT_TIMESTAMP(6)',
   })
   createdAt: Date;
-
-  @Column()
-  seen: boolean;
 
   @ManyToOne(() => Mate, (mate) => mate.messages)
   mate: Mate;

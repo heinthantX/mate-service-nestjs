@@ -31,7 +31,7 @@ export class MateRequestsService {
   }
 
   async acceptRequest(id: number, mate: Mate, accepted: boolean) {
-    const mateRequest = await this.repo.findOne(id);
+    const mateRequest = await this.repo.findOneBy({ id });
     if (!mateRequest) {
       throw new NotFoundException("couldn't find request");
     }
@@ -41,6 +41,6 @@ export class MateRequestsService {
   }
 
   findAll(mate: Mate) {
-    return this.repo.find({ mate });
+    return this.repo.find({ relations: { mate: true } });
   }
 }

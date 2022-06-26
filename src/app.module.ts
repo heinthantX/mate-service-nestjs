@@ -16,7 +16,28 @@ import { MateRequest } from './mate-requests/mate-request.entity';
 import { MateAppointment } from './mate-appointments/mate-appointment.entity';
 import { MessagesModule } from './messages/messages.module';
 import { Message } from './messages/message.entiy';
+import { DataSource } from 'typeorm';
 const cookieSession = require('cookie-session');
+
+export const AppDataSource = new DataSource({
+  type: 'postgres',
+  host: 'localhost',
+  port: 5432,
+  username: 'postgres',
+  password: 'heinthant472003',
+  database: 'mateservice',
+  entities: [User, Mate, MatePrice, MateRequest, MateAppointment, Message],
+  synchronize: true,
+  logging: false,
+});
+
+AppDataSource.initialize()
+  .then(() => {
+    console.log('Data Source has been initialized!');
+  })
+  .catch((err) => {
+    console.error('Error during Data Source initialization', err);
+  });
 
 @Module({
   imports: [

@@ -9,11 +9,11 @@ export class MatesService {
   constructor(@InjectRepository(Mate) private repo: Repository<Mate>) {}
 
   findOne(id: number) {
-    return this.repo.findOne(id);
+    return this.repo.findOneBy({ id });
   }
 
   find(email: string) {
-    return this.repo.find({ email });
+    return this.repo.findBy({ email });
   }
 
   create(mateDto: CreateMateDto) {
@@ -23,7 +23,7 @@ export class MatesService {
   }
 
   async update(id: number, attrs: Partial<Mate>) {
-    const mate = await this.repo.findOne(id);
+    const mate = await this.repo.findOneBy({ id });
     if (!mate) {
       throw new NotFoundException('Mate not found');
     } else {

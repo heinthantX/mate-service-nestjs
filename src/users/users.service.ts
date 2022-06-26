@@ -9,11 +9,11 @@ export class UsersService {
   constructor(@InjectRepository(User) private repo: Repository<User>) {}
 
   findOne(id: number) {
-    return this.repo.findOne(id);
+    return this.repo.findOneBy({ id });
   }
 
   find(email: string) {
-    return this.repo.find({ email });
+    return this.repo.findBy({ email });
   }
 
   create(userDto: CreateUserDto) {
@@ -23,7 +23,7 @@ export class UsersService {
   }
 
   async update(id: number, attrs: Partial<User>) {
-    const user = await this.repo.findOne(id);
+    const user = await this.repo.findOneBy({ id });
     if (!user) {
       throw new NotFoundException('user not found');
     } else {

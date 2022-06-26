@@ -10,6 +10,7 @@ import { UsersAuthService } from './users-auth.service';
   imports: [TypeOrmModule.forFeature([User])],
   providers: [UsersService, UsersAuthService],
   controllers: [UsersController],
+  exports: [UsersService],
 })
 export class UsersModule {
   configure(consumer: MiddlewareConsumer) {

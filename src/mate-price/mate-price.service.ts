@@ -13,7 +13,7 @@ export class MatePriceService {
   ) {}
 
   find(mate: Mate) {
-    return this.repo.find({ mate });
+    return this.repo.find({ relations: { mate: true } });
   }
 
   create(matePricesDto: CreateMatePriceDto[], mate: Mate) {
@@ -26,7 +26,7 @@ export class MatePriceService {
   }
 
   async update(mate: Mate, attrs: Partial<MatePrice>[]) {
-    const matePrices = await this.repo.find({ mate });
+    const matePrices = await this.repo.find({ relations: { mate: true } });
     if (!matePrices.length) {
       return;
     }
