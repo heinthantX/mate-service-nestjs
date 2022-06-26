@@ -54,5 +54,5 @@ export class CreateMateDto {
   time: Date;
 
   @IsMilitaryTime()
-  responseTime: Date;
+  response_time: Date;
 }

@@ -2,6 +2,7 @@ import {
   IsDateString,
   IsMilitaryTime,
   IsNumber,
+  IsOptional,
   IsString,
   Min,
 } from 'class-validator';
@@ -21,5 +22,6 @@ export class CreateRequestDto {
   price: number;
 
   @IsString()
-  specialRequest: string;
+  @IsOptional()
+  special_request: string;
 }

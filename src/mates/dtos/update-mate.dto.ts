@@ -69,5 +69,5 @@ export class UpdateMateDto {
 
   @IsMilitaryTime()
   @IsOptional()
-  responseTime: Date;
+  response_time: Date;
 }

@@ -50,5 +50,5 @@ export class MateDto {
   online: boolean;
 
   @Expose()
-  responseTime: Date;
+  response_time: Date;
 }

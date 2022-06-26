@@ -41,6 +41,9 @@ export class MateRequestsService {
   }
 
   findAll(mate: Mate) {
-    return this.repo.find({ relations: { mate: true } });
+    return this.repo.find({
+      relations: { mate: true },
+      where: { accepted: false },
+    });
   }
 }

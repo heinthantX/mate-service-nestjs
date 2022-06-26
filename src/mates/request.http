@@ -16,7 +16,7 @@ Content-Type: application/json
   "language": "Myanmar",
   "service": "cooking, washing",
   "time": "03:00",
-  "responseTime": "01:00"
+  "response_time": "01:00"
 }
 
 ### sign in as existing mate

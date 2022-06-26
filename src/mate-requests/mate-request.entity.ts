@@ -28,20 +28,20 @@ export class MateRequest {
   price: number;
 
   @Column()
-  specialRequest: string;
+  special_request: string;
 
   @CreateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
   })
-  createdAt: Date;
+  created_at: Date;
 
   @UpdateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
     onUpdate: 'CURRENT_TIMESTAMP(6)',
   })
-  updatedAt: Date;
+  updated_at: Date;
 
   @Column({ default: false })
   accepted: boolean;

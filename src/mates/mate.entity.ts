@@ -66,7 +66,7 @@ export class Mate {
   online: boolean;
 
   @Column('time')
-  responseTime: Date;
+  response_time: Date;
 
   @OneToMany(() => MatePrice, (matePrice) => matePrice.mate)
   matePrices: MatePrice[];

@@ -43,7 +43,7 @@ export class MessagesService {
       .getQuery();
 
     const messages = AppDataSource.manager.query(
-      `${sender} UNION ALL ${receiver} ORDER BY id`,
+      `${sender} UNION ALL ${receiver} ORDER BY created_at`,
     );
 
     return messages;

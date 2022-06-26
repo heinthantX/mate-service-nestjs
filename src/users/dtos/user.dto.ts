@@ -14,5 +14,5 @@ export class UserDto {
   phone: string;
 
   @Expose()
-  userType: string;
+  user_type: string;
 }

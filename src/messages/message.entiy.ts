@@ -24,7 +24,7 @@ export class Message {
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
   })
-  createdAt: Date;
+  created_at: Date;
 
   @ManyToOne(() => Mate, (mate) => mate.messages)
   mate: Mate;

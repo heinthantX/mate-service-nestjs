@@ -28,7 +28,7 @@ export class User {
   password: string;
 
   @Column({ default: 'free' })
-  userType: string;
+  user_type: string;
 
   @OneToMany(() => MateRequest, (mateRequest) => mateRequest.user)
   mateRequests: MateRequest[];
