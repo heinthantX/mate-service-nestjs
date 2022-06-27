@@ -17,11 +17,11 @@ import { AcceptRequestDto } from './dtos/accept-request.dto';
 import { CreateRequestDto } from './dtos/create-request.dto';
 import { MateRequestsService } from './mate-requests.service';
 
-@Controller('mates/requests')
+@Controller()
 export class MateRequestsController {
   constructor(private mateRequestService: MateRequestsService) {}
 
-  @Post('/:id')
+  @Post('mates/requests/:id')
   @UseGuards(UserAuthGuard)
   createRequest(
     @Body() body: CreateRequestDto,
@@ -31,7 +31,7 @@ export class MateRequestsController {
     return this.mateRequestService.createRequest(body, user, id);
   }
 
-  @Patch('accept/:id')
+  @Patch('mates/requests/accept/:id')
   @UseGuards(MateAuthGuard)
   acceptRequest(
     @Param('id') id: number,
@@ -41,9 +41,14 @@ export class MateRequestsController {
     return this.mateRequestService.acceptRequest(id, mate, body.accepted);
   }
 
-  @Get()
+  @Get('mates/requests')
   @UseGuards(MateAuthGuard)
   getAllRequest(@CurrentMate() mate: Mate) {
     return this.mateRequestService.findAll(mate);
+  }
+
+  @Get('users/requests')
+  getRequestsByUser(@CurrentUser() user: User) {
+    return this.mateRequestService.findAllForUser(user);
   }
 }

@@ -20,3 +20,7 @@ Content-Type: application/json
 
 ### Get all requset for current mate
 GET http://localhost:3000/mates/requests HTTP/1.1
+
+
+### Get all requset by current user
+GET http://localhost:3000/users/requests HTTP/1.1

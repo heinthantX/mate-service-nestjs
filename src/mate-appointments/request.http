@@ -1,5 +1,5 @@
 ### get all appointements of current mate
-GET http://localhost:3000/mates/appointments HTTP/1.1
+GET http://localhost:3000/mates/appointments?completed=false HTTP/1.1
 
 ### change completion with appintments id
 PATCH  http://localhost:3000/mates/appointments/3 HTTP/1.1
@@ -11,4 +11,10 @@ Content-Type: application/json
 
 
 ### get all completd appointments of current mate
-GET http://localhost:3000/mates/appointments/completed HTTP/1.1
+GET http://localhost:3000/mates/appointments?completed=true HTTP/1.1
+
+### get all appointments of current user
+GET http://localhost:3000/users/appointments?completed=true HTTP/1.1
+
+### get all completd appointments of current user
+GET http://localhost:3000/users/appointments?completed=true HTTP/1.1

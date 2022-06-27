@@ -51,4 +51,11 @@ export class MateRequestsService {
       where: { mate: { id: mate.id }, accepted: false },
     });
   }
+
+  findAllForUser(user: User) {
+    return this.repo.find({
+      relations: { mate: true },
+      where: { user: { id: user.id }, accepted: false },
+    });
+  }
 }

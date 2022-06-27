@@ -53,4 +53,13 @@ export class MateAppointmentsService {
 
     return this.repo.save(appointment);
   }
+
+  findAllForUser(user: User, completed: boolean) {
+    return this.repo
+      .createQueryBuilder('mateAppointment')
+      .innerJoinAndSelect('mateAppointment.mateRequest', 'materequest')
+      .where('mateAppointment.userId = :userId', { userId: user.id })
+      .andWhere('completed = :completed', { completed })
+      .getMany();
+  }
 }

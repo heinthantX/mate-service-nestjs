@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Patch, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { CurrentUser } from '../users/decorators/current-user.decorator';
 import { User } from '../users/user.entity';
 import { MateAuthGuard } from '../guards/mate-auth.guard';
@@ -7,23 +15,22 @@ import { CurrentMate } from '../mates/decorators/current-mate.decorator';
 import { Mate } from '../mates/mate.entity';
 import { ChangeCompletionDto } from './dtos/change-completion.dto';
 import { MateAppointmentsService } from './mate-appointments.service';
+import { GetAppointmentsDto } from './dtos/get-appoointments.dto';
 
-@Controller('mates/appointments')
+@Controller()
 export class MateAppointmentsController {
   constructor(private mateAppointementsService: MateAppointmentsService) {}
 
-  @Get()
+  @Get('mates/appointments')
   @UseGuards(MateAuthGuard)
-  getAllAppintments(@CurrentMate() mate: Mate) {
-    return this.mateAppointementsService.findAll(mate, false);
+  getAllAppintments(
+    @CurrentMate() mate: Mate,
+    @Query() query: GetAppointmentsDto,
+  ) {
+    return this.mateAppointementsService.findAll(mate, query.completed);
   }
 
-  @Get('completed')
-  getAllCompletedAppinted(@CurrentMate() mate: Mate) {
-    return this.mateAppointementsService.findAll(mate, true);
-  }
-
-  @Patch(':id')
+  @Patch('mates/appointments/:id')
   @UseGuards(UserAuthGuard)
   changeCompletion(
     @Param('id') id: number,
@@ -35,5 +42,14 @@ export class MateAppointmentsController {
       user,
       body.completed,
     );
+  }
+
+  @Get('users/appointments')
+  @UseGuards(UserAuthGuard)
+  getAppintmentsForUser(
+    @CurrentUser() user: User,
+    @Query() query: GetAppointmentsDto,
+  ) {
+    return this.mateAppointementsService.findAllForUser(user, query.completed);
   }
 }
