@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Mate } from '../mates/mate.entity';
 import { User } from '../users/user.entity';
-import { createQueryBuilder, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Message } from './message.entiy';
 import { AppDataSource } from '../app.module';
 

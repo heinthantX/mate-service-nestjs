@@ -7,7 +7,6 @@ import { User } from '../users/user.entity';
 import { Like, Not, Repository } from 'typeorm';
 import { CreateRequestDto } from './dtos/create-request.dto';
 import { MateRequest } from './mate-request.entity';
-import { userInfo } from 'os';
 
 @Injectable()
 export class MateRequestsService {
@@ -48,6 +47,7 @@ export class MateRequestsService {
 
   findAll(mate: Mate) {
     return this.repo.find({
+      relations: { user: true },
       where: { mate: { id: mate.id }, accepted: false },
     });
   }

@@ -3,6 +3,7 @@ import {
   Body,
   Controller,
   Get,
+  NotFoundException,
   Param,
   Patch,
   Post,
@@ -49,6 +50,9 @@ export class MatePriceController {
   @Get(':id')
   async findAllPrice(@Param('id') id: number) {
     const mate = await this.matesService.findOne(id);
+    if (!mate) {
+      throw new NotFoundException('mate not found');
+    }
     return this.matePriceService.find(mate);
   }
 }

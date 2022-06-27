@@ -13,7 +13,7 @@ export class MatePriceService {
   ) {}
 
   find(mate: Mate) {
-    return this.repo.find({ where: { mate: Like(`${mate.id}`) } });
+    return this.repo.find({ where: { mate: { id: mate.id } } });
   }
 
   create(matePricesDto: CreateMatePriceDto[], mate: Mate) {
