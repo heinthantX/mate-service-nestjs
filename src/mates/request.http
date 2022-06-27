@@ -53,3 +53,6 @@ Content-Type: application/json
 {
   "online": true
 }
+
+### Find mate by user
+GET  http://localhost:3000/mates?city=yangon&gender=male&time=03:00&duration=02:00 HTTP/1.1

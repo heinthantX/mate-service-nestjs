@@ -6,6 +6,7 @@ import {
   NotFoundException,
   Patch,
   Post,
+  Query,
   Session,
   UseGuards,
 } from '@nestjs/common';
@@ -19,6 +20,7 @@ import { UpdateMateDto } from './dtos/update-mate.dto';
 import { Serialize } from '../interceptors/serialize.interceptor';
 import { MateDto } from './dtos/mate.dto';
 import { ChangeMateActiveStatusDto } from './dtos/change-mate-active-status.dto';
+import { FindMateByUserDto } from './dtos/find-mate-by-user.dto';
 
 @Controller('mates')
 @Serialize(MateDto)
@@ -75,5 +77,10 @@ export class MatesController {
     @Body() body: ChangeMateActiveStatusDto,
   ) {
     return this.matesService.update(mate.id, body);
+  }
+
+  @Get()
+  findMate(@Query() query: FindMateByUserDto) {
+    return this.matesService.findMateByUser(query);
   }
 }

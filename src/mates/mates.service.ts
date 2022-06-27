@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateMateDto } from './dtos/create-mate.dto';
 import { Mate } from './mate.entity';
+import { FindMateByUserDto } from './dtos/find-mate-by-user.dto';
 
 @Injectable()
 export class MatesService {
@@ -14,6 +15,24 @@ export class MatesService {
 
   find(email: string) {
     return this.repo.findBy({ email });
+  }
+
+  async findMateByUser(mateDto: FindMateByUserDto) {
+    const mates = await this.repo.find({
+      relations: { matePrices: true },
+      where: {
+        city: mateDto.city,
+        gender: mateDto.gender,
+        time: mateDto.time,
+        matePrices: { duration: mateDto.duration },
+      },
+    });
+
+    if (!mates.length) {
+      throw new NotFoundException('mates not found');
+    }
+
+    return mates;
   }
 
   create(mateDto: CreateMateDto) {

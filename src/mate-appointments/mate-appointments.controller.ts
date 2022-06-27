@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Patch, UseGuards } from '@nestjs/common';
-import { CurrentUser } from 'src/users/decorators/current-user.decorator';
-import { User } from 'src/users/user.entity';
+import { CurrentUser } from '../users/decorators/current-user.decorator';
+import { User } from '../users/user.entity';
 import { MateAuthGuard } from '../guards/mate-auth.guard';
 import { UserAuthGuard } from '../guards/user-auth.guard';
 import { CurrentMate } from '../mates/decorators/current-mate.decorator';

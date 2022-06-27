@@ -1,4 +1,6 @@
-import { Expose } from 'class-transformer';
+import { Expose, Transform, Type } from 'class-transformer';
+import { MatePrice } from '../../mate-price/mate-price.entity';
+import { Mate } from '../mate.entity';
 
 export class MateDto {
   @Expose()
@@ -51,4 +53,8 @@ export class MateDto {
 
   @Expose()
   response_time: Date;
+
+  @Expose()
+  @Transform(({ obj }) => obj.matePrices)
+  matePrices: MatePrice[];
 }

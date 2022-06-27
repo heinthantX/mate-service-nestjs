@@ -9,7 +9,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { Message } from '../messages/message.entiy';
-import { MateAppointment } from 'src/mate-appointments/mate-appointment.entity';
+import { MateAppointment } from '../mate-appointments/mate-appointment.entity';
 
 @Entity()
 export class User {

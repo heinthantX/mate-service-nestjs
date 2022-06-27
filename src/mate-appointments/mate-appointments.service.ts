@@ -6,9 +6,9 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { MateRequest } from '../mate-requests/mate-request.entity';
 import { Mate } from '../mates/mate.entity';
-import { Like, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { MateAppointment } from './mate-appointment.entity';
-import { User } from 'src/users/user.entity';
+import { User } from '../users/user.entity';
 
 @Injectable()
 export class MateAppointmentsService {

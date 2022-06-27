@@ -5,7 +5,6 @@ import {
   Get,
   Patch,
   Post,
-  Param,
   Session,
   UseGuards,
   NotFoundException,

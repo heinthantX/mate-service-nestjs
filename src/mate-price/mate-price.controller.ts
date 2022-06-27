@@ -9,7 +9,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { MateAuthGuard } from 'src/guards/mate-auth.guard';
+import { MateAuthGuard } from '../guards/mate-auth.guard';
 import { CurrentMate } from '../mates/decorators/current-mate.decorator';
 import { Mate } from '../mates/mate.entity';
 import { MatesService } from '../mates/mates.service';
