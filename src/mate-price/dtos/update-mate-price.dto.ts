@@ -1,12 +1,15 @@
-import { IsMilitaryTime, IsNumber, IsOptional, Min } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsMilitaryTime, IsNotEmpty, IsNumber, Min } from 'class-validator';
 
 export class UpdateMatePriceDto {
+  @ApiProperty()
+  @IsNotEmpty()
   @IsMilitaryTime()
-  @IsOptional()
   duration: Date;
 
+  @ApiProperty()
+  @IsNotEmpty()
   @IsNumber()
   @Min(0)
-  @IsOptional()
   price: number;
 }

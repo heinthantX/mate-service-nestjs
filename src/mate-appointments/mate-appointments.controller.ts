@@ -16,8 +16,10 @@ import { Mate } from '../mates/mate.entity';
 import { ChangeCompletionDto } from './dtos/change-completion.dto';
 import { MateAppointmentsService } from './mate-appointments.service';
 import { GetAppointmentsDto } from './dtos/get-appoointments.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller()
+@ApiTags('appointments')
 export class MateAppointmentsController {
   constructor(private mateAppointementsService: MateAppointmentsService) {}
 

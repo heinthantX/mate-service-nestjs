@@ -1,7 +1,9 @@
-import { Transform } from 'class-transformer';
-import { IsBoolean, IsBooleanString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsBooleanString, IsNotEmpty } from 'class-validator';
 
 export class GetAppointmentsDto {
+  @ApiProperty()
+  @IsNotEmpty()
   @IsBooleanString()
   completed: boolean;
 }

@@ -17,8 +17,10 @@ import { User } from '../users/user.entity';
 import { MatesService } from '../mates/mates.service';
 import { MateAuthGuard } from '../guards/mate-auth.guard';
 import { UserAuthGuard } from '../guards/user-auth.guard';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller()
+@ApiTags('messages')
 export class MessagesController {
   constructor(
     private messagesService: MessagesService,
@@ -26,7 +28,7 @@ export class MessagesController {
     private matesService: MatesService,
   ) {}
 
-  @Post('mates/messages/send/:id')
+  @Post('mates/messages/:id')
   @UseGuards(MateAuthGuard)
   async sendMessageFromMate(
     @CurrentMate() mate: Mate,
@@ -41,7 +43,7 @@ export class MessagesController {
     return this.messagesService.sendMessage(body.content, 'mate', user, mate);
   }
 
-  @Post('users/messages/send/:id')
+  @Post('users/messages/:id')
   @UseGuards(UserAuthGuard)
   async sendMessageFromUser(
     @CurrentUser() user: User,

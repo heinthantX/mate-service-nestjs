@@ -9,6 +9,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { MateAuthGuard } from '../guards/mate-auth.guard';
 import { CurrentMate } from '../mates/decorators/current-mate.decorator';
 import { Mate } from '../mates/mate.entity';
@@ -19,6 +20,7 @@ import { MatePrice } from './mate-price.entity';
 import { MatePriceService } from './mate-price.service';
 
 @Controller('mates/mateprice')
+@ApiTags('mate price')
 export class MatePriceController {
   constructor(
     private matePriceService: MatePriceService,

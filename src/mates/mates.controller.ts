@@ -21,8 +21,11 @@ import { Serialize } from '../interceptors/serialize.interceptor';
 import { MateDto } from './dtos/mate.dto';
 import { ChangeMateActiveStatusDto } from './dtos/change-mate-active-status.dto';
 import { FindMateByUserDto } from './dtos/find-mate-by-user.dto';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { SignInMateDto } from './dtos/sign-in-mate.dto';
 
 @Controller('mates')
+@ApiTags('mates')
 @Serialize(MateDto)
 export class MatesController {
   constructor(
@@ -38,7 +41,7 @@ export class MatesController {
   }
 
   @Post('signin')
-  async signIn(@Body() body: Partial<CreateMateDto>, @Session() session: any) {
+  async signIn(@Body() body: SignInMateDto, @Session() session: any) {
     const mate = await this.matesAuthService.signIn(body.email, body.password);
     session.mateId = mate.id;
     return mate;

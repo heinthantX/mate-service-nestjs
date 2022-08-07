@@ -7,6 +7,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { MateAuthGuard } from '../guards/mate-auth.guard';
 import { UserAuthGuard } from '../guards/user-auth.guard';
 import { CurrentMate } from '../mates/decorators/current-mate.decorator';
@@ -18,6 +19,7 @@ import { CreateRequestDto } from './dtos/create-request.dto';
 import { MateRequestsService } from './mate-requests.service';
 
 @Controller()
+@ApiTags('requests')
 export class MateRequestsController {
   constructor(private mateRequestService: MateRequestsService) {}
 

@@ -18,7 +18,10 @@ import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserDto } from './dtos/user.dto';
 import { User } from './user.entity';
 import { UsersService } from './users.service';
+import { ApiTags } from '@nestjs/swagger';
+import { SignInUserDto } from './dtos/sign-in-user.dto';
 
+@ApiTags('users')
 @Controller('users')
 @Serialize(UserDto)
 export class UsersController {
@@ -35,7 +38,7 @@ export class UsersController {
   }
 
   @Post('signin')
-  async signIn(@Body() body: Partial<CreateUserDto>, @Session() session: any) {
+  async signIn(@Body() body: SignInUserDto, @Session() session: any) {
     const user = await this.usersAuthService.signIn(body.email, body.password);
     session.userId = user.id;
     return user;
@@ -62,7 +65,7 @@ export class UsersController {
     return user;
   }
 
-  @Patch(':id')
+  @Patch('update')
   @UseGuards(UserAuthGuard)
   updateUser(@CurrentUser() user: User, @Body() body: UpdateUserDto) {
     return this.usersService.update(user.id, body);
